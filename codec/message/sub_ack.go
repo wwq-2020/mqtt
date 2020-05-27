@@ -23,7 +23,7 @@ func NewSubAck(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *SubAck) Decode(br *bufio.Reader) error {
+func (m *SubAck) Decode(data []byte) error {
 	return nil
 }
 

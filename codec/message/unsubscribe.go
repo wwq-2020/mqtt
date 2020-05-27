@@ -23,7 +23,7 @@ func NewUnSubscribe(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *UnSubscribe) Decode(br *bufio.Reader) error {
+func (m *UnSubscribe) Decode(data []byte) error {
 	return nil
 }
 

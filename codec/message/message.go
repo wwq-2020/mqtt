@@ -13,7 +13,7 @@ var (
 
 // Message Message
 type Message interface {
-	Decode(br *bufio.Reader) error
+	Decode(data []byte) error
 	Encode(bw *bufio.Writer) error
 }
 

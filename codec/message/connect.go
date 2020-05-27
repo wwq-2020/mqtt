@@ -23,7 +23,7 @@ func NewConnect(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *Connect) Decode(br *bufio.Reader) error {
+func (m *Connect) Decode(data []byte) error {
 	return nil
 }
 

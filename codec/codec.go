@@ -35,7 +35,11 @@ func (c *codec) Decode() (message.Message, error) {
 	}
 	messageFactory := message.GetFactory(header.ControlType())
 	message := messageFactory(header.Flags())
-	if err := message.Decode(c.br); err != nil {
+	buf := make([]byte, header.DataLen())
+	if _, err := io.ReadFull(c.br, buf); err != nil {
+		return nil, err
+	}
+	if err := message.Decode(buf); err != nil {
 		return nil, fmt.Errorf("got err:%#v for type:%d", err, header.ControlType())
 	}
 	return message, nil

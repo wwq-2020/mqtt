@@ -18,7 +18,7 @@ func NewUnKnown(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *UnKnown) Decode(br *bufio.Reader) error {
+func (m *UnKnown) Decode(data []byte) error {
 	return errors.New("unknown type")
 }
 

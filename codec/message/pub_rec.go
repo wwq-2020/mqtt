@@ -23,7 +23,7 @@ func NewPubRec(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *PubRec) Decode(br *bufio.Reader) error {
+func (m *PubRec) Decode(data []byte) error {
 	return nil
 }
 

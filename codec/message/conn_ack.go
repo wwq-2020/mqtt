@@ -23,7 +23,7 @@ func NewConnAck(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *ConnAck) Decode(br *bufio.Reader) error {
+func (m *ConnAck) Decode(data []byte) error {
 	return nil
 }
 

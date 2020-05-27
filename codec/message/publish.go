@@ -23,7 +23,7 @@ func NewPublish(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *Publish) Decode(br *bufio.Reader) error {
+func (m *Publish) Decode(data []byte) error {
 	return nil
 }
 

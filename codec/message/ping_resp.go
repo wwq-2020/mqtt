@@ -23,7 +23,7 @@ func NewPingResp(flags uint8) Message {
 }
 
 // Decode Decode
-func (m *PingResp) Decode(br *bufio.Reader) error {
+func (m *PingResp) Decode(data []byte) error {
 	return nil
 }
 
