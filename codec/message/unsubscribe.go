@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.UnSubscribe, NewUnSubscribe)
+	Register(controltype.UnSubscribe, NewUnSubscribe)
 }
 
 // UnSubscribe UnSubscribe

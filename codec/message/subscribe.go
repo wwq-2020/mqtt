@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.Subscribe, NewSubscribe)
+	Register(controltype.Subscribe, NewSubscribe)
 }
 
 // Subscribe Subscribe

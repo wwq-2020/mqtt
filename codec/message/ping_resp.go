@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.PingResp, NewPingResp)
+	Register(controltype.PingResp, NewPingResp)
 }
 
 // PingResp PingResp

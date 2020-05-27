@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.Connnect, NewConnect)
+	Register(controltype.Connnect, NewConnect)
 }
 
 // Connect Connect

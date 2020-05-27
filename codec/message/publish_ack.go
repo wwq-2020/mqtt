@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.PublishAck, NewPublishAck)
+	Register(controltype.PublishAck, NewPublishAck)
 }
 
 // PublishAck PublishAck

@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.ConnAck, NewConnAck)
+	Register(controltype.ConnAck, NewConnAck)
 }
 
 // ConnAck ConnAck

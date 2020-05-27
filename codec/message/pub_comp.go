@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.PubComp, NewPubComp)
+	Register(controltype.PubComp, NewPubComp)
 }
 
 // PubComp PubComp

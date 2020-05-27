@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.UnSubAck, NewUnSubAck)
+	Register(controltype.UnSubAck, NewUnSubAck)
 }
 
 // UnSubAck UnSubAck

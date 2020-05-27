@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.PingReq, NewPingReq)
+	Register(controltype.PingReq, NewPingReq)
 }
 
 type PingReq struct {

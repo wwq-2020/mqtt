@@ -2,6 +2,7 @@ package codec
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 
 	"github.com/wwq1988/mqtt/codec/header"
@@ -35,7 +36,7 @@ func (c *codec) Decode() (message.Message, error) {
 	messageFactory := message.GetFactory(header.ControlType())
 	message := messageFactory(header.Flags())
 	if err := message.Decode(c.br); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("got err:%#v for type:%d", err, header.ControlType())
 	}
 	return message, nil
 }

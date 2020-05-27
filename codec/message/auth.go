@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.Auth, NewAuth)
+	Register(controltype.Auth, NewAuth)
 }
 
 // Auth Auth

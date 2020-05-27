@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.PubRec, NewPubRec)
+	Register(controltype.PubRec, NewPubRec)
 }
 
 // PubRec PubRec

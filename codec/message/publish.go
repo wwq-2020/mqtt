@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	register(controltype.Publish, NewPublish)
+	Register(controltype.Publish, NewPublish)
 }
 
 // Publish Publish

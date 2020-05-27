@@ -20,10 +20,11 @@ type Message interface {
 // Factory Factory
 type Factory func(flags uint8) Message
 
-func register(t controltype.Type, factory Factory) {
+// Register Register
+func Register(t controltype.Type, factory Factory) {
 	factory, exist := type2Factory[t]
 	if exist {
-		panic(fmt.Sprintf("dup register for type:%d", t))
+		panic(fmt.Sprintf("dup Register for type:%d", t))
 	}
 	type2Factory[t] = factory
 }
