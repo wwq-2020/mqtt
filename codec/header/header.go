@@ -11,10 +11,9 @@ type Header interface {
 	Flags() uint8
 	SetFlags(uint8)
 	DataLen() uint32
-	SetDataLen(uint32)
 	ControlType() controltype.Type
 	SetControlType(controltype.Type)
-	Encode(*bufio.Writer) error
+	EncodeTo(*bufio.Writer) error
 	Decode(*bufio.Reader) error
 }
 
@@ -39,10 +38,6 @@ func (h *header) SetFlags(flags uint8) {
 
 func (h *header) DataLen() uint32 {
 	return h.dataLen
-}
-
-func (h *header) SetDataLen(dataLen uint32) {
-	h.dataLen = dataLen
 }
 
 func (h *header) ControlType() controltype.Type {
@@ -74,16 +69,11 @@ func (h *header) Decode(br *bufio.Reader) error {
 	return nil
 }
 
-func (h *header) Encode(br *bufio.Writer) error {
+func (h *header) EncodeTo(bw *bufio.Writer) error {
 	b := (0xf0 & uint8(h.controlType) << 4) | (0x0f & h.flags)
-	if err := br.WriteByte(byte(b)); err != nil {
+	if err := bw.WriteByte(byte(b)); err != nil {
 		return err
 	}
-	for h.dataLen/0x80 > 0 {
-		mod := h.dataLen % 0x80
-		if err := br.WriteByte(byte(mod)); err != nil {
-			return err
-		}
-	}
+
 	return nil
 }
