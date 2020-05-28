@@ -39,13 +39,14 @@ func NewPublish(flags uint8) Message {
 
 // Decode Decode
 func (m *Publish) Decode(data []byte) error {
-	bytes := bytes.Get(data)
-	topicLen := bytes.ReadUint16()
-	m.Topic = bytes.ReadStr(topicLen)
+	b := bytes.Get(data)
+	defer bytes.Put(b)
+	topicLen := b.ReadUint16()
+	m.Topic = b.ReadStr(topicLen)
 	if m.hasMsgID() {
-		m.MsgID = bytes.ReadUint16()
+		m.MsgID = b.ReadUint16()
 	}
-	m.Payload = bytes.ReadAll()
+	m.Payload = b.ReadAll()
 	return nil
 }
 
