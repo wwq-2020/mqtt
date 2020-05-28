@@ -81,6 +81,7 @@ func (m *Publish) writeBody(bw *bufio.Writer) error {
 		dataLen += 2
 	}
 	bytesBuffer := bytespool.Get(int(dataLen))
+	defer bytespool.Put(bytesBuffer)
 	for dataLen/0x80 > 0 {
 		mod := dataLen % 0x80
 		if err := bytesBuffer.WriteByte(byte(mod)); err != nil {
