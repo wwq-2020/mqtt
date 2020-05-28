@@ -50,8 +50,9 @@ func (b *Bytes) ReadUint32() uint32 {
 
 // Read Read
 func (b *Bytes) Read(dataLen uint16) []byte {
+	data := b.data[b.cursor : b.cursor+int64(dataLen)]
 	b.cursor += int64(dataLen)
-	return b.data[:dataLen]
+	return data
 }
 
 // ReadStr ReadStr
