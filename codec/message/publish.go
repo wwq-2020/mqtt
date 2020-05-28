@@ -2,8 +2,8 @@ package message
 
 import (
 	"bufio"
-	"bytes"
 
+	"github.com/wwq1988/mqtt/bytespool"
 	"github.com/wwq1988/mqtt/bytesutil"
 	"github.com/wwq1988/mqtt/codec/controltype"
 	"github.com/wwq1988/mqtt/codec/header"
@@ -80,9 +80,7 @@ func (m *Publish) writeBody(bw *bufio.Writer) error {
 	if m.hasMsgID() {
 		dataLen += 2
 	}
-	buf := make([]byte, dataLen)
-	bytesBuffer := bytes.NewBuffer(buf)
-
+	bytesBuffer := bytespool.Get(int(dataLen))
 	for dataLen/0x80 > 0 {
 		mod := dataLen % 0x80
 		if err := bytesBuffer.WriteByte(byte(mod)); err != nil {
