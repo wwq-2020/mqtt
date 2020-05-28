@@ -2,10 +2,9 @@ package message
 
 import (
 	"bufio"
+	"bytes"
 
-	bytesBuffer "bytes"
-
-	"github.com/wwq1988/mqtt/bytes"
+	"github.com/wwq1988/mqtt/bytesutil"
 	"github.com/wwq1988/mqtt/codec/controltype"
 	"github.com/wwq1988/mqtt/codec/header"
 	"github.com/wwq1988/mqtt/codec/qos"
@@ -39,8 +38,8 @@ func NewPublish(flags uint8) Message {
 
 // Decode Decode
 func (m *Publish) Decode(data []byte) error {
-	b := bytes.Get(data)
-	defer bytes.Put(b)
+	b := bytesutil.Get(data)
+	defer bytesutil.Put(b)
 	topicLen := b.ReadUint16()
 	m.Topic = b.ReadStr(topicLen)
 	if m.hasMsgID() {
@@ -66,7 +65,7 @@ func (m *Publish) EncodeTo(bw *bufio.Writer) error {
 }
 
 func (m *Publish) writeHeader(bw *bufio.Writer) error {
-	header := header.New()
+	header := header.Get()
 	header.SetControlType(controltype.Publish)
 	m.setFlags()
 	header.SetFlags(m.flags)
@@ -82,7 +81,7 @@ func (m *Publish) writeBody(bw *bufio.Writer) error {
 		dataLen += 2
 	}
 	buf := make([]byte, dataLen)
-	bytesBuffer := bytesBuffer.NewBuffer(buf)
+	bytesBuffer := bytes.NewBuffer(buf)
 
 	for dataLen/0x80 > 0 {
 		mod := dataLen % 0x80

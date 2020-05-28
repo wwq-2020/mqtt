@@ -74,6 +74,11 @@ func (h *header) EncodeTo(bw *bufio.Writer) error {
 	if err := bw.WriteByte(byte(b)); err != nil {
 		return err
 	}
-
 	return nil
+}
+
+func (h *header) Reset() {
+	h.flags = 0
+	h.dataLen = 0
+	h.controlType = controltype.Reserved
 }
