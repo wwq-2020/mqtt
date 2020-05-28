@@ -27,7 +27,7 @@ func (m *UnSubscribe) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *UnSubscribe) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *UnSubscribe) EncodeTo(bw *bufio.Writer) error {
 	return nil
 }

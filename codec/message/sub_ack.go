@@ -27,7 +27,7 @@ func (m *SubAck) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *SubAck) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *SubAck) EncodeTo(bw *bufio.Writer) error {
 	return nil
 }

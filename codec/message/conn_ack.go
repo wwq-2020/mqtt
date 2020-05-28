@@ -27,7 +27,7 @@ func (m *ConnAck) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *ConnAck) Encode(br *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *ConnAck) EncodeTo(br *bufio.Writer) error {
 	return nil
 }

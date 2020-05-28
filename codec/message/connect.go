@@ -27,7 +27,7 @@ func (m *Connect) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *Connect) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *Connect) EncodeTo(bw *bufio.Writer) error {
 	return nil
 }

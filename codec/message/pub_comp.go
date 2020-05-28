@@ -27,7 +27,7 @@ func (m *PubComp) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *PubComp) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *PubComp) EncodeTo(bw *bufio.Writer) error {
 	return nil
 }

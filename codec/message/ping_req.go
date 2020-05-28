@@ -26,7 +26,10 @@ func (m *PingReq) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *PingReq) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *PingReq) EncodeTo(bw *bufio.Writer) error {
+	if _, err := bw.Write([]byte{0xc0, 0x0}); err != nil {
+		return err
+	}
 	return nil
 }

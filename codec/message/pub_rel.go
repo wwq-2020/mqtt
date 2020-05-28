@@ -27,7 +27,7 @@ func (m *PubRel) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *PubRel) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *PubRel) EncodeTo(bw *bufio.Writer) error {
 	return nil
 }

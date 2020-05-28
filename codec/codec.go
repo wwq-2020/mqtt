@@ -35,9 +35,12 @@ func (c *codec) Decode() (message.Message, error) {
 	}
 	messageFactory := message.GetFactory(header.ControlType())
 	message := messageFactory(header.Flags())
-	buf := make([]byte, header.DataLen())
-	if _, err := io.ReadFull(c.br, buf); err != nil {
-		return nil, err
+	dataLen := header.DataLen()
+	buf := make([]byte, dataLen)
+	if dataLen != 0 {
+		if _, err := io.ReadFull(c.br, buf); err != nil {
+			return nil, err
+		}
 	}
 	if err := message.Decode(buf); err != nil {
 		return nil, fmt.Errorf("got err:%#v for type:%d", err, header.ControlType())
@@ -46,7 +49,7 @@ func (c *codec) Decode() (message.Message, error) {
 }
 
 func (c *codec) Encode(message message.Message) error {
-	if err := message.Encode(c.bw); err != nil {
+	if err := message.EncodeTo(c.bw); err != nil {
 		return err
 	}
 	return nil

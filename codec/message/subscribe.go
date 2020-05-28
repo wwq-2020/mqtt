@@ -24,10 +24,11 @@ func NewSubscribe(flags uint8) Message {
 
 // Decode Decode
 func (m *Subscribe) Decode(data []byte) error {
+
 	return nil
 }
 
-// Encode Encode
-func (m *Subscribe) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *Subscribe) EncodeTo(bw *bufio.Writer) error {
 	return nil
 }

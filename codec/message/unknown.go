@@ -22,7 +22,7 @@ func (m *UnKnown) Decode(data []byte) error {
 	return errors.New("unknown type")
 }
 
-// Encode Encode
-func (m *UnKnown) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *UnKnown) EncodeTo(bw *bufio.Writer) error {
 	return errors.New("unknown type")
 }

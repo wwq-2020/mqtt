@@ -2,12 +2,10 @@ package message
 
 import (
 	"bufio"
-
-	"github.com/wwq1988/mqtt/codec/controltype"
 )
 
 func init() {
-	Register(controltype.Auth, NewAuth)
+	// Register(controltype.Auth, NewAuth)
 }
 
 // Auth Auth
@@ -27,7 +25,7 @@ func (m *Auth) Decode(data []byte) error {
 	return nil
 }
 
-// Encode Encode
-func (m *Auth) Encode(bw *bufio.Writer) error {
+// EncodeTo EncodeTo
+func (m *Auth) EncodeTo(bw *bufio.Writer) error {
 	return nil
 }

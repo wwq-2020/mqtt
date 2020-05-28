@@ -14,7 +14,7 @@ var (
 // Message Message
 type Message interface {
 	Decode(data []byte) error
-	Encode(bw *bufio.Writer) error
+	EncodeTo(bw *bufio.Writer) error
 }
 
 // Factory Factory
