@@ -31,5 +31,9 @@ func Register(t controltype.Type, factory Factory) {
 
 // GetFactory GetFactory
 func GetFactory(t controltype.Type) Factory {
-	return type2Factory[t]
+	factory, exist := type2Factory[t]
+	if exist {
+		return factory
+	}
+	return NewUnKnown
 }
