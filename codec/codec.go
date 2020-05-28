@@ -14,6 +14,7 @@ import (
 type Codec interface {
 	Encode(message message.Message) error
 	Decode() (message.Message, error)
+	Reset(rw io.ReadWriter)
 }
 
 type codec struct {
