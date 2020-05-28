@@ -65,7 +65,8 @@ func (m *Publish) EncodeTo(bw *bufio.Writer) error {
 }
 
 func (m *Publish) writeHeader(bw *bufio.Writer) error {
-	header := header.Get()
+	h := header.Get()
+	defer header.Put(h)
 	header.SetControlType(controltype.Publish)
 	m.setFlags()
 	header.SetFlags(m.flags)

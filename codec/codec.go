@@ -28,18 +28,19 @@ func New() Codec {
 }
 
 func (c *codec) Decode() (message.Message, error) {
-	header := header.Get()
-	if err := header.Decode(c.br); err != nil {
+	h := header.Get()
+	defer header.Put(h)
+	if err := h.Decode(c.br); err != nil {
 		return nil, err
 	}
-	messageFactory := message.GetFactory(header.ControlType())
-	message := messageFactory(header.Flags())
-	buf, err := c.readBody(header.DataLen())
+	messageFactory := message.GetFactory(h.ControlType())
+	message := messageFactory(h.Flags())
+	buf, err := c.readBody(h.DataLen())
 	if err != nil {
 		return nil, err
 	}
 	if err := message.Decode(buf); err != nil {
-		return nil, fmt.Errorf("got err:%#v for type:%d", err, header.ControlType())
+		return nil, fmt.Errorf("got err:%#v for type:%d", err, h.ControlType())
 	}
 	return message, nil
 }
