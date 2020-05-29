@@ -40,8 +40,7 @@ func NewPublish(flags uint8) Message {
 func (m *Publish) Decode(data []byte) error {
 	b := bytesutil.Get(data)
 	defer bytesutil.Put(b)
-	topicLen := b.ReadUint16()
-	m.Topic = b.ReadStr(topicLen)
+	m.Topic = b.ReadVariableStr()
 	if m.hasMsgID() {
 		m.MsgID = b.ReadUint16()
 	}

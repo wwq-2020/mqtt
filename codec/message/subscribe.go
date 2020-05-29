@@ -41,8 +41,7 @@ func (m *Subscribe) Decode(data []byte) error {
 	defer bytesutil.Put(b)
 	m.MsgID = b.ReadUint16()
 	for !b.EOF() {
-		dataLen := b.ReadUint16()
-		name := b.ReadStr(dataLen)
+		name := b.ReadVariableStr()
 		qos := qos.Parse(b.ReadByte())
 		m.Topics = append(m.Topics, &Topic{
 			Name: name,

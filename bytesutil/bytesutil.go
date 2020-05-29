@@ -60,6 +60,17 @@ func (b *Bytes) Read(dataLen uint16) []byte {
 	return data
 }
 
+// ReadVariableStr ReadVariableStr
+func (b *Bytes) ReadVariableStr() string {
+	return string(b.ReadVariable())
+}
+
+// ReadVariable ReadVariable
+func (b *Bytes) ReadVariable() []byte {
+	dataLen := b.ReadUint16()
+	return b.Read(dataLen)
+}
+
 // ReadStr ReadStr
 func (b *Bytes) ReadStr(dataLen uint16) string {
 	return string(b.Read(dataLen))
