@@ -48,6 +48,11 @@ func (b *Bytes) ReadUint32() uint32 {
 	return result
 }
 
+// ReadByte ReadByte
+func (b *Bytes) ReadByte() byte {
+	return b.Read(1)[0]
+}
+
 // Read Read
 func (b *Bytes) Read(dataLen uint16) []byte {
 	data := b.data[b.cursor : b.cursor+int64(dataLen)]
@@ -70,6 +75,11 @@ func (b *Bytes) ReadAll() []byte {
 // ReadAllStr ReadAllStr
 func (b *Bytes) ReadAllStr() string {
 	return string(b.ReadAll())
+}
+
+// EOF EOF
+func (b *Bytes) EOF() bool {
+	return b.cursor == int64(len(b.data))
 }
 
 // Reset Reset
