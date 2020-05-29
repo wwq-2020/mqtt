@@ -67,10 +67,10 @@ func (m *Publish) EncodeTo(bw *bufio.Writer) error {
 func (m *Publish) writeHeader(bw *bufio.Writer) error {
 	h := header.Get()
 	defer header.Put(h)
-	header.SetControlType(controltype.Publish)
+	h.SetControlType(controltype.Publish)
 	m.setFlags()
-	header.SetFlags(m.flags)
-	if err := header.EncodeTo(bw); err != nil {
+	h.SetFlags(m.flags)
+	if err := h.EncodeTo(bw); err != nil {
 		return err
 	}
 	return nil
@@ -85,19 +85,13 @@ func (m *Publish) writeBody(bw *bufio.Writer) error {
 	defer bytespool.Put(bytesBuffer)
 	for dataLen/0x80 > 0 {
 		mod := dataLen % 0x80
-		if err := bytesBuffer.WriteByte(byte(mod)); err != nil {
-			return err
-		}
+		bytesBuffer.WriteByte(byte(mod))
 	}
 	bytesBuffer.WriteString(m.Topic)
 	if m.hasMsgID() {
-		if _, err := bytesBuffer.Write(util.Uint16ToBytes(m.MsgID)); err != nil {
-			return err
-		}
+		bytesBuffer.Write(util.Uint16ToBytes(m.MsgID))
 	}
-	if _, err := bytesBuffer.Write(m.Payload); err != nil {
-		return err
-	}
+	bytesBuffer.Write(m.Payload)
 	if _, err := bw.Write(bytesBuffer.Bytes()); err != nil {
 		return err
 	}
