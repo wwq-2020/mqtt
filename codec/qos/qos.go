@@ -13,8 +13,8 @@ const (
 	Reserved                = 3
 )
 
-// ParseQos ParseQos
-func ParseQos(src uint8) Qos {
+// Parse Parse
+func Parse(src uint8) Qos {
 	switch Qos(src) {
 	case AtMostOnceDelivery:
 		return AtMostOnceDelivery

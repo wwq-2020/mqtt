@@ -7,6 +7,7 @@ import (
 	"github.com/wwq1988/mqtt/bytesutil"
 	"github.com/wwq1988/mqtt/codec/controltype"
 	"github.com/wwq1988/mqtt/codec/header"
+	"github.com/wwq1988/mqtt/codec/qos"
 	"github.com/wwq1988/mqtt/util"
 )
 
@@ -17,7 +18,7 @@ func init() {
 // Topic Topic
 type Topic struct {
 	Name string
-	Qos  uint8
+	Qos  qos.Qos
 }
 
 // Subscribe Subscribe
@@ -42,7 +43,7 @@ func (m *Subscribe) Decode(data []byte) error {
 	for !b.EOF() {
 		dataLen := b.ReadUint16()
 		name := b.ReadStr(dataLen)
-		qos := uint8(b.ReadByte())
+		qos := qos.Parse(b.ReadByte())
 		m.Topics = append(m.Topics, &Topic{
 			Name: name,
 			Qos:  qos,

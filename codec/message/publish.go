@@ -31,7 +31,7 @@ func NewPublish(flags uint8) Message {
 	return &Publish{
 		flags:  flags,
 		Dup:    flags&0x08 > 0,
-		Qos:    qos.ParseQos(flags & 0x06 >> 1),
+		Qos:    qos.Parse(flags & 0x06 >> 1),
 		Retain: flags&0x01 > 0,
 	}
 }
