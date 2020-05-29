@@ -112,8 +112,6 @@ func (m *Connect) writeBody(bw *bufio.Writer) error {
 	bytesBuffer.Write(util.Uint16ToBytes(uint16(len(m.ProtocolName))))
 	bytesBuffer.WriteString(m.ProtocolName)
 
-	m.setFlags()
-
 	bytesBuffer.WriteByte(m.Flags)
 	bytesBuffer.Write(util.Uint16ToBytes(m.Keepalive))
 
